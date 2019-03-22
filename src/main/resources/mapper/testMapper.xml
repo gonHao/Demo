@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gh.Demo.mapper.TestMapper">
+    <select id="selectByUsername" resultType="com.gh.Demo.module.testModule">
+        select *
+        from
+        Demo_gh
+        where
+        username = #{username}
+    </select>
+    <insert id="addUser" parameterType="com.gh.Demo.module.testModule">
+        insert into Demo_gh
+        values(null,#{username},#{password},#{describe})
+    </insert>
+    <delete id="deleteByUsername">
+        delete from Demo_gh
+        where username = #{username}
+    </delete>
+    <update id="updateUser" parameterType="com.gh.Demo.module.testModule">
+        update
+        Demo_gh
+        <set> <if test="password!=null">
+        password=#{password},
+        </if>
+        <if test="describe!=null">
+           `describe`=#{describe},
+        </if>
+        </set>
+        where
+        username = #{username}
+    </update>
+    <select id="selectAll" resultType="com.gh.Demo.module.testModule">
+        select *
+        from Demo_gh
+    </select>
+</mapper>
